@@ -1,1 +1,599 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuatreMains | Четырёхрукий массаж для женщин</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        :root {
+            --color-bg: #fafaf8;
+            --color-bg-alt: #f3f1ee;
+            --color-accent: #6b9b7f;
+            --color-accent-light: #9dbfa3;
+            --color-text: #2c2c2c;
+            --color-text-light: #646464;
+            --color-white: #ffffff;
+            --color-border: #e8e6e2;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Georgia', 'Garamond', serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3 {
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--color-text);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1rem;
+            color: var(--color-text-light);
+            margin-bottom: 1.5rem;
+            max-width: 65ch;
+        }
+
+        a {
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-accent-light);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--color-accent);
+            color: var(--color-white);
+            font-family: 'Georgia', serif;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            background-color: #5a8a70;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-accent);
+            border: 2px solid var(--color-accent);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-accent);
+            color: var(--color-white);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--color-white);
+            z-index: 1000;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--color-text);
+            letter-spacing: 0.05em;
+        }
+
+        .logo span {
+            color: var(--color-accent);
+        }
+
+        nav a {
+            margin-left: 2.5rem;
+            color: var(--color-text);
+            font-size: 0.95rem;
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: 400;
+        }
+
+        nav a:hover {
+            color: var(--color-accent);
+        }
+
+        .hero {
+            margin-top: 80px;
+            padding: 6rem 2rem 5rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            color: var(--color-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 6rem;
+            opacity: 0.8;
+        }
+
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about {
+            background-color: var(--color-white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .about-text p {
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .about-benefits {
+            list-style: none;
+        }
+
+        .about-benefits li {
+            padding: 1.2rem 0;
+            border-bottom: 1px solid var(--color-border);
+            font-size: 0.95rem;
+            color: var(--color-text);
+        }
+
+        .about-benefits li:before {
+            content: "◆ ";
+            color: var(--color-accent);
+            margin-right: 0.8rem;
+            font-size: 0.8rem;
+        }
+
+        .services {
+            background-color: var(--color-bg-alt);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background-color: var(--color-white);
+            padding: 2.5rem;
+            border-left: 4px solid var(--color-accent);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateX(8px);
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+            color: var(--color-text);
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .price {
+            display: inline-block;
+            margin-top: 1.5rem;
+            font-size: 1.3rem;
+            color: var(--color-accent);
+            font-weight: 600;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .experience {
+            background-color: var(--color-white);
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .experience-item {
+            padding: 2rem;
+        }
+
+        .exp-number {
+            font-size: 2.5rem;
+            color: var(--color-accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .exp-label {
+            font-size: 0.95rem;
+            color: var(--color-text-light);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .contact {
+            background-color: var(--color-bg-alt);
+            text-align: center;
+        }
+
+        .contact h2 {
+            margin-bottom: 3rem;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--color-text);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--color-border);
+            background-color: var(--color-white);
+            font-family: 'Georgia', serif;
+            font-size: 0.95rem;
+            color: var(--color-text);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 3px rgba(107, 155, 127, 0.1);
+        }
+
+        .form-submit {
+            margin-top: 1rem;
+        }
+
+        footer {
+            background-color: var(--color-text);
+            color: var(--color-white);
+            padding: 3rem 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--color-accent-light);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            .hero {
+                margin-top: 70px;
+                padding: 3rem 1.5rem 2.5rem;
+            }
+
+            .hero-visual {
+                font-size: 4rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-content {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            p {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">Quatre<span>Mains</span></div>
+            <nav>
+                <a href="#about">О методе</a>
+                <a href="#services">Услуги</a>
+                <a href="#contact">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Гармония в четырёх руках</h1>
+                <p>Премиальный четырёхрукий массаж, специально разработанный для женщин 30+. Глубокое расслабление, восстановление энергии и подтверждённое улучшение благополучия.</p>
+                <button class="btn" onclick="document.getElementById('contact').scrollIntoView()">Записаться на массаж</button>
+            </div>
+            <div class="hero-visual">✨</div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="section-inner">
+            <h2>О четырёхруком массаже</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>Четырёхрукий массаж — это роскошь для тела и ума. Две опытные массажистки синхронно работают с вашим телом, создавая симфонию ощущений и максимальное расслабление. Этот редкий метод дарует то, что невозможно получить в обычном массаже.</p>
+                    <p>Каждая сеанс индивидуален и адаптирован к вашим потребностям. Мы специализируемся на работе с женским организмом в период 30+ лет, когда забота о восстановлении и качестве жизни особенно значима.</p>
+                </div>
+                <div>
+                    <ul class="about-benefits">
+                        <li>Глубокое расслабление и избавление от мышечного напряжения</li>
+                        <li>Улучшение циркуляции и обмена веществ</li>
+                        <li>Снижение стресса и беспокойства</li>
+                        <li>Восстановление энергии и жизненного тонуса</li>
+                        <li>Улучшение качества сна и отдыха</li>
+                        <li>Ощущение баланса и внутренней гармонии</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="section-inner">
+            <h2>Наши услуги</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Классический четырёхрукий массаж</h3>
+                    <p>Полный сеанс синхронного массажа, включающий работу со спиной, ногами, руками и шеей. Идеально для полного расслабления и восстановления.</p>
+                    <div class="price">6 500 ₽</div>
+                    <div style="font-size: 0.85rem; color: var(--color-text-light); margin-top: 0.5rem;">60 минут</div>
+                </div>
+                <div class="service-card">
+                    <h3>Экспресс четырёхрукий массаж</h3>
+                    <p>Сокращённая версия для тех, кто спешит. Концентрированное воздействие на основные проблемные зоны за короткое время.</p>
+                    <div class="price">4 200 ₽</div>
+                    <div style="font-size: 0.85rem; color: var(--color-text-light); margin-top: 0.5rem;">30 минут</div>
+                </div>
+                <div class="service-card">
+                    <h3>Восстанавливающий СПА</h3>
+                    <p>Комбинированный сеанс: четырёхрукий массаж с использованием натуральных масел и косметических средств для кожи. Абсолютное блаженство.</p>
+                    <div class="price">8 500 ₽</div>
+                    <div style="font-size: 0.85rem; color: var(--color-text-light); margin-top: 0.5rem;">90 минут</div>
+                </div>
+                <div class="service-card">
+                    <h3>Абонемент (4 сеанса)</h3>
+                    <p>Специальное предложение для постоянных клиентов. Экономия 10% и приоритетное бронирование времени.</p>
+                    <div class="price">23 400 ₽</div>
+                    <div style="font-size: 0.85rem; color: var(--color-text-light); margin-top: 0.5rem;">действует 3 месяца</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="experience">
+        <div class="section-inner">
+            <h2>Почему нас выбирают</h2>
+            <div class="experience-grid">
+                <div class="experience-item">
+                    <div class="exp-number">12+</div>
+                    <div class="exp-label">Лет опыта в массаже</div>
+                </div>
+                <div class="experience-item">
+                    <div class="exp-number">2 000+</div>
+                    <div class="exp-label">Благодарных клиентов</div>
+                </div>
+                <div class="experience-item">
+                    <div class="exp-number">98%</div>
+                    <div class="exp-label">Готовы рекомендовать</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="section-inner">
+            <h2>Запишитесь на сеанс</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Номер телефона</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Предпочтительное время и пожелания</label>
+                    <textarea id="message" name="message"></textarea>
+                </div>
+                <button type="submit" class="btn form-submit">Отправить заявку</button>
+            </form>
+            <div style="margin-top: 3rem; font-size: 0.95rem; color: var(--color-text);">
+                <p>📞 +7 (985) 446-56-10</p>
+                <p>📞 +7 (905) 578-43-86</p>
+                <p>📍 Химки, Юбилейный проспект, 49</p>
+                <p>⏰ Пн-Вс: 10:00 - 21:00</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#about">О нас</a>
+                <a href="#services">Услуги</a>
+                <a href="#contact">Контакты</a>
+            </div>
+            <p>&copy; 2024 QuatreMains. Забота о вас в четырёх руках.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Спасибо за заявку! Мы свяжемся с вами в ближайшие 24 часа.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
